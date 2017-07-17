@@ -18,11 +18,16 @@ library(dplyr)
 #plot(Cq~Dil, Bl, xlab="Dilution Factor", ylab="Cq Value",abline(line), col="red", untf=TRUE))
 
 #Blood standards plot
-ggplot(Bl, aes(x = Dil, y = Cq)) + geom_point() + geom_smooth(method='loess', color="blue") +xlab("Dilution")+ylab("Cq Value")
+ggplot(Bl, aes(x = Dil, y = Cq)) + geom_point() + geom_smooth(method='loess', color="blue", se=F) +xlab("Dilution")+ylab("Cq Value")
 fit <- lm(Bl$Cq~log(Bl$Dil)) #code for a logistic regression of fit
 summary(fit) #spits out the results
 
 #eDNA standards plot
-ggplot(eDNA, aes(x = Dil, y = Cq)) + geom_point() + geom_smooth(method='loess', color="blue") +xlab("Dilution")+ylab("Cq Value")
+ggplot(eDNA, aes(x = Dil, y = Cq)) + geom_point() + geom_smooth(method='loess', color="blue",se=F) +xlab("Dilution")+ylab("Cq Value")
 fit <- lm(Bl$Cq~log(Bl$Dil)) #code for a logistic regression of fit
 summary(fit) #spits out the results
+
+
+ggplot(Bl, aes(x = Dil, y = Cq)) + geom_point() +stat_smooth(method="loess",formula=y~x,col="blue", se=T)
+
+
